@@ -31,22 +31,22 @@ A real-time grass rendering engine built from scratch in C++ using modern OpenGL
 ## Core Concepts
 
 ### 1. Offloading Work to the GPU  
-All blades share one geometry and are rendered using a large buffer of transformation matrices on the GPU, removing costly per-object CPU logic.
+All blades share one geometry and are rendered using a large buffer of transformation matrices on the GPU, removing costly per object CPU logic.
 
 ### 2. Shader-Based Visual Detail  
-All visuals—blade shape, lighting, swaying, and color—are defined procedurally in the vertex and fragment shaders, allowing minimal geometry usage.
+All visuals blade shape, lighting, swaying, and color are defined procedurally in the vertex and fragment shaders, allowing minimal geometry usage.
 
 ---
 
 ##  File Structure
 
-├── main.cpp # Entry point with OpenGL setup and main loop
-├── Shader.h / Shader.cpp # Shader loading, compiling, and management
-├── Camera.h / Camera.cpp # First-person camera system
-├── default.vert / default.frag # Grass blade shaders
-├── ground.vert / ground.frag # Ground plane shaders
-├── skybox.vert / skybox.frag # Skybox shaders
-├── /skybox/ # Six images for cubemap (right, left, top, bottom, front, back)
+main.cpp # Entry point with OpenGL setup and main loop
+Shader.h / Shader.cpp # Shader loading, compiling, and management
+Camera.h / Camera.cpp # First-person camera system
+default.vert / default.frag # Grass blade shaders
+ground.vert / ground.frag # Ground plane shaders
+skybox.vert / skybox.frag # Skybox shaders
+/skybox/ # Six images for cubemap (right, left, top, bottom, front, back)
 
 
 ---
