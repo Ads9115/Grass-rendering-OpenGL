@@ -38,15 +38,35 @@ All visuals blade shape, lighting, swaying, and color are defined procedurally i
 
 ---
 
-##  File Structure
+## File Structure
 
-main.cpp # Entry point with OpenGL setup and main loop
-Shader.h / Shader.cpp # Shader loading, compiling, and management
-Camera.h / Camera.cpp # First-person camera system
-default.vert / default.frag # Grass blade shaders
-ground.vert / ground.frag # Ground plane shaders
-skybox.vert / skybox.frag # Skybox shaders
-/skybox/ # Six images for cubemap (right, left, top, bottom, front, back)
+main.cpp  
+- Entry point with OpenGL setup and main loop
+
+Shader.h / Shader.cpp  
+- Shader class for loading, compiling, and managing GLSL shader programs
+
+Camera.h / Camera.cpp  
+- First-person camera implementation with position, orientation, and input handling
+
+default.vert / default.frag  
+- Vertex and fragment shaders for rendering grass blades
+
+ground.vert / ground.frag  
+- Vertex and fragment shaders for the ground plane
+
+skybox.vert / skybox.frag  
+- Vertex and fragment shaders for the cubemap skybox
+
+skybox/  
+- Folder containing six images for the skybox cubemap  
+  - right.jpg  
+  - left.jpg  
+  - top.jpg  
+  - bottom.jpg  
+  - front.jpg  
+  - back.jpg
+
 
 
 ---
