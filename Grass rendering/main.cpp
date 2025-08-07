@@ -61,7 +61,7 @@ int main() {
 	glEnable(GL_DEPTH_TEST);
 
 	
-	Shader shader("default.vert", "default.frag");
+	Shader grassShader("default.vert", "default.frag");
 	Shader groundShader("ground.vert", "ground.frag");
 
 
@@ -224,13 +224,18 @@ int main() {
 
 
 		//Grass
-		shader.use();
-		shader.setMat4("projection", projection);
-		shader.setMat4("view", view);
-		shader.setFloat("time", currentFrame);
+		grassShader.use();
+		grassShader.setMat4("projection", projection);
+		grassShader.setMat4("view", view);
+		grassShader.setFloat("time", currentFrame);
+
+
+		grassShader.setVec3("lightDir", glm::vec3(-0.2f, -1.0f, -0.3f));
+		grassShader.setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+		grassShader.setVec3("viewPos", camera.Position);
+
 		glBindVertexArray(VAO);
 		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, amount);
-
 
 		
 		glfwSwapBuffers(window);

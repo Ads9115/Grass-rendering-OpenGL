@@ -159,8 +159,8 @@
     <None Include="ground.vert" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Collision Sim\Collision Sim\Shader.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,6 +8,8 @@ layout (location = 2) in mat4 aInstanceMatrix;
 
 
 out vec2 TexCoord;
+out vec3 Normal;
+out vec3 FragPos;
 
 
 uniform mat4 projection;
@@ -20,6 +22,10 @@ void main()
 	
 
 	vec3 animatedPos = aPos;
+
+	FragPos = vec3(aInstanceMatrix * vec4(animatedPos, 1.0));
+  
+    Normal = mat3(transpose(inverse(aInstanceMatrix))) * vec3(0.0, 1.0, 0.0);
 	
 	
 	float displacement = sin(time * 4.0 + aInstanceMatrix[3].x) * 0.02 * aTexCoord.y;

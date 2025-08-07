@@ -1,4 +1,5 @@
 #ifndef SHADER_CLASS_H
+#define SHADER_CLASS_H
 
 
 
@@ -19,7 +20,8 @@ public:
 	void setVec2(const std::string& name, const glm::vec2& value) const;
 
 	void setMat4(const std::string& name, const glm::mat4& mat) const;
+	void setVec3(const std::string& name, const glm::vec3& value) const;
 };
 
 
-#endif SHADER_CLASS_H
+#endif 
