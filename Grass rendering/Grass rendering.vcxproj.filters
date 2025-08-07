@@ -35,6 +35,12 @@
     <None Include="default.frag">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ground.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ground.frag">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Collision Sim\Collision Sim\Shader.h">

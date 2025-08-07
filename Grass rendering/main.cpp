@@ -62,6 +62,9 @@ int main() {
 
 	
 	Shader shader("default.vert", "default.frag");
+	Shader groundShader("ground.vert", "ground.frag");
+
+
 
 	float position[] = {
 		         
@@ -160,6 +163,30 @@ int main() {
 	glBindVertexArray(0);
 
 
+	float groundVertices[] = {
+		
+		 15.0f, -0.01f,  15.0f,
+		-15.0f, -0.01f,  15.0f,
+		-15.0f, -0.01f, -15.0f,
+		 15.0f, -0.01f, -15.0f,
+	};
+	unsigned int groundIndices[] = { 0, 1, 2, 0, 2, 3 };
+
+	unsigned int groundVAO, groundVBO, groundEBO;
+	glGenVertexArrays(1, &groundVAO);
+	glGenBuffers(1, &groundVBO);
+	glGenBuffers(1, &groundEBO);
+
+	glBindVertexArray(groundVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, groundVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(groundVertices), groundVertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, groundEBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(groundIndices), groundIndices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+	glBindVertexArray(0);
+
 
 	glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
 
@@ -176,19 +203,31 @@ int main() {
 		processInput(window);
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		shader.use();
+
 
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 view = camera.GetViewMatrix();
 
+
+
+
+		//Ground
+		groundShader.use();
+		groundShader.setMat4("projection", projection);
+		groundShader.setMat4("view", view);
+		glm::mat4 groundModel = glm::mat4(1.0f);
+		groundShader.setMat4("model", groundModel);
+		glBindVertexArray(groundVAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+
+
+		//Grass
+		shader.use();
 		shader.setMat4("projection", projection);
 		shader.setMat4("view", view);
-		
-
-
 		shader.setFloat("time", currentFrame);
-
 		glBindVertexArray(VAO);
 		glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, amount);
 
